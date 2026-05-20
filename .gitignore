@@ -1,0 +1,19 @@
+# Временные файлы
+*.tmp
+*.temp
+*.log
+
+# Visual Studio
+bin/
+obj/
+.vs/
+*.user
+*.suo
+
+# Python
+*.pyc
+__pycache__/
+
+# База данных
+*.db
+*.sqlite
