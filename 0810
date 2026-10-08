@@ -1,0 +1,121 @@
+# from abc import ABC, abstractmethod
+#
+# class Shape(ABC):
+#     @abstractmethod
+#     def area(self) -> float:
+#         pass
+#
+#     @abstractmethod
+#     def perimeter(self) -> float:
+#         pass
+#
+#
+#
+# class Rectangle(Shape):
+#     def __init__(self, w, h):
+#         self.w = w
+#         self.h = h
+#
+#     def area(self) -> float:
+#         return self.w * self.h
+#
+#
+#     def perimeter(self) -> float:
+#         return  2 * (self.w + self.h)
+#
+#
+# s = Rectangle(45.2,32.5)
+#
+#   -- ПРОТОКОЛЫ --
+# гибкий способ описания интерфейса но без наследования протоколом мы создаем метод/ы благодоря ему можем наслед любой класс если в нем есть такой метод
+
+
+#from typing import Protocol
+
+#
+# class Drawable(Protocol):
+#     def draw(self) -> str:
+#         pass
+#
+# def render(obj: Drawable) -> None:
+#     print(obj.draw())
+#
+# class Circle:
+#     def draw(self) -> str:
+#         return "Рисуем круг"
+#
+# class TextLabel:
+#     def draw(self) -> str:
+#         return "Рисуем надпись"
+#
+# class LowButton:
+#     def click(self) -> str:
+#         return "Нажали на кнопку"
+#
+# render(Circle())
+# render(TextLabel())
+#
+# from typing import Protocol
+#
+# class Savable(Protocol):
+#     def save(self) -> str:
+#         pass
+#
+# def render(obj: Savable) -> None:
+#     print(obj.save())
+#
+# class Safe:
+#     def save(self) ->str:
+#         return "Защищен"
+#
+# class Sape:
+#     def save(self) ->str:
+#         return "не знаю"
+#
+# class Sage:
+#     def save(self) ->str:
+#         return "wad"
+#
+# render(Safe())
+# render(Sape())
+# render(Sage())
+
+from typing import List, Protocol
+
+class Drawable(Protocol):
+    def draw(self) ->str:
+        pass
+
+def render_all(items: List[Drawable]) -> None:
+    for i, obj in enumerate(items, 1):
+        print(f"{i}. {obj.draw()}")
+
+class Button:
+    def draw(self) -> str:
+        return "[Кнопка]"
+
+class Icon:
+    def draw(self) ->str:
+        return "(Иконка)"
+
+items = [Button(), Icon(), Button(), Button()]
+render_all(items)
+
+
+class Dashboard:
+    def __init__(self):
+        self._widgets: list[Drawable] = []
+
+
+    def add(self, w:Drawable):
+        self._widgets.append(w)
+
+    def render(self):
+        for w in self._widgets:
+            print(w.draw())
+
+d = Dashboard()
+d.add(Button())
+d.add(Icon())
+d.add(Button())
+d.render()
